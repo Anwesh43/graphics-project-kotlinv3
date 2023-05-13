@@ -14,3 +14,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "GraphicsProjectV3"
 include ':app'
+include ':linerotsepview'
