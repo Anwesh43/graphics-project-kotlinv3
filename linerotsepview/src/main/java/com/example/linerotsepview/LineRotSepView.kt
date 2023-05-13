@@ -212,4 +212,13 @@ class LineRotSepView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : LineRotSepView {
+            val view : LineRotSepView = LineRotSepView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
