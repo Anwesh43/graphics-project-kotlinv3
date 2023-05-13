@@ -2,6 +2,7 @@ package com.example.graphicsprojectv3
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import com.example.linerotsepview.LineRotSepView
 
 class MainActivity : AppCompatActivity() {
@@ -9,5 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         LineRotSepView.create(this)
+        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 }
