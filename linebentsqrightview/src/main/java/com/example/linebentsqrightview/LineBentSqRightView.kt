@@ -24,7 +24,7 @@ val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
-val rot : Float = 30f
+val rot : Float = 15f
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -42,11 +42,11 @@ fun Canvas.drawLineBentSqRight(scale : Float, w : Float, h : Float, paint : Pain
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2 + (w / 2) * dsc(4), h / 2) {
+    drawXY(w / 2 + (w / 2) * dsc(3), h / 2) {
         drawXY(0f, 0f) {
             rotate(rot * dsc(2))
             drawLine(0f, 0f, size * dsc(0), 0f, paint)
-            drawRect(RectF(size / 2, -size * dsc(1), size, 0f), paint)
+            drawRect(RectF(size / 2, -size * 0.5f * dsc(1), size, 0f), paint)
         }
     }
 }
