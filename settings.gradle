@@ -16,3 +16,4 @@ rootProject.name = "GraphicsProjectV3"
 include ':app'
 include ':linerotsepview'
 include ':linebentsqrightview'
+include ':linearcleftbentview'
