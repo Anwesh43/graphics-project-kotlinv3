@@ -42,7 +42,7 @@ fun Canvas.drawLineArcLeftBent(scale : Float, w : Float, h : Float, paint : Pain
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2 - (w / 2 + size) * dsc(3), h / 2) {
         drawXY(0f, 0f) {
             rotate(rot * dsc(2))
             drawLine(0f, 0f, size * dsc(0), 0f, paint)
@@ -57,6 +57,7 @@ fun Canvas.drawLALBNode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
+    paint.style = Paint.Style.STROKE
     drawLineArcLeftBent(scale, w, h, paint)
 }
 
