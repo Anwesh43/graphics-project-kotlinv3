@@ -213,4 +213,13 @@ class BarLineJoinRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BarLineJoinRotView {
+            val view : BarLineJoinRotView = BarLineJoinRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
