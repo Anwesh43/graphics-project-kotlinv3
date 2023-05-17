@@ -188,4 +188,27 @@ class BarLineJoinRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BarLineJoinRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val bljr : BarLineJoinRot = BarLineJoinRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bljr.draw(canvas, paint)
+            animator.animate {
+                bljr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bljr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
