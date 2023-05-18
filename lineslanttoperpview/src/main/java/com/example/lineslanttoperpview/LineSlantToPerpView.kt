@@ -186,4 +186,27 @@ class LineSlantToPerpView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineSlantToPerpView) {
+
+        private val animator : Animator = Animator(view)
+        private val lstp : LineSlantToPerp = LineSlantToPerp(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lstp.draw(canvas, paint)
+            animator.animate {
+                lstp.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lstp.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
