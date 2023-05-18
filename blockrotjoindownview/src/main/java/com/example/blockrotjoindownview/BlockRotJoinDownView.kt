@@ -214,4 +214,13 @@ class BlockRotJoinDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BlockRotJoinDownView {
+            val view : BlockRotJoinDownView = BlockRotJoinDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
