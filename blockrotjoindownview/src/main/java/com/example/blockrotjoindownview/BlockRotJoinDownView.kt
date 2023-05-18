@@ -189,4 +189,27 @@ class BlockRotJoinDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BlockRotJoinDownView) {
+
+        private val brjd : BlockRotJoinDown = BlockRotJoinDown(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            brjd.draw(canvas, paint)
+            animator.animate {
+                brjd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            brjd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
