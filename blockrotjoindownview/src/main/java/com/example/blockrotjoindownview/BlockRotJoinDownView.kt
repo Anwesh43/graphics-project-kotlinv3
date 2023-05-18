@@ -48,7 +48,7 @@ fun Canvas.drawBlockRotJoinDown(scale : Float, w : Float, h : Float, paint : Pai
             rotate(rot * dsc(1))
             drawRect(RectF(0f, -size, size, 0f), paint)
         }
-        drawXY(0f, -h / 2 + (h / 2) * dsc(2)) {
+        drawXY(-size / 2, -h / 2 + (h / 2) * dsc(2)) {
             drawLine(0f, 0f, 0f, -size, paint)
         }
     }
