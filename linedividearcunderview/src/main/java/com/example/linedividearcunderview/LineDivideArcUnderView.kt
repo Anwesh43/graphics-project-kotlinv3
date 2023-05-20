@@ -215,4 +215,13 @@ class LineDivideArcUnderView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineDivideArcUnderView {
+            val view : LineDivideArcUnderView = LineDivideArcUnderView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
