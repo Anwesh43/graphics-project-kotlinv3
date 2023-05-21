@@ -50,7 +50,7 @@ fun Canvas.drawBiLineSmallCircle(scale : Float, w : Float, h : Float, paint : Pa
             scale(1f - 2 * j, 1f)
             drawXY(size, -h / 2 + (h / 2) * dsc(0)) {
                 drawLine(0f, 0f, 0f, -size, paint)
-                drawArc(RectF(-r / 2, 0f, r, r / 2), -90f, 360f * dsc(1), false, paint)
+                drawArc(RectF(-r / 2, 0f, r / 2, r), -90f, 360f * dsc(1), false, paint)
             }
         }
     }
@@ -62,6 +62,7 @@ fun Canvas.drawBLSCNode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
+    paint.style = Paint.Style.STROKE
     drawBiLineSmallCircle(scale, w, h, paint)
 }
 
