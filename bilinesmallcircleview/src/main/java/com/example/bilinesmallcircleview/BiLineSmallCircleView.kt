@@ -191,4 +191,27 @@ class BiLineSmallCircleView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiLineSmallCircleView) {
+
+        private val blsc : BiLineSmallCircle = BiLineSmallCircle(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            blsc.draw(canvas, paint)
+            animator.animate {
+                blsc.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            blsc.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
