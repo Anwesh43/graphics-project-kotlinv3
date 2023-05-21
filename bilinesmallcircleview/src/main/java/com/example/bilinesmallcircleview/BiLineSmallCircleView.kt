@@ -216,4 +216,13 @@ class BiLineSmallCircleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BiLineSmallCircleView {
+            val view : BiLineSmallCircleView = BiLineSmallCircleView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
