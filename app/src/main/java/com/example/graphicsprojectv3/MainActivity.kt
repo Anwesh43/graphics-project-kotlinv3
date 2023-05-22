@@ -3,13 +3,13 @@ package com.example.graphicsprojectv3
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.bilinesmallcircleview.BiLineSmallCircleView
+import com.example.tbentlinedownview.TBentLineDownView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
-        BiLineSmallCircleView.create(this)
+        TBentLineDownView.create(this)
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 }
