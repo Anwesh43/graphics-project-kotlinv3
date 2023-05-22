@@ -187,4 +187,27 @@ class TBentLineDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : TBentLineDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val tbld : TBentLineDown = TBentLineDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            tbld.draw(canvas, paint)
+            animator.animate {
+                tbld.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            tbld.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
