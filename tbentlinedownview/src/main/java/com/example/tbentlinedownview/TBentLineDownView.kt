@@ -212,4 +212,12 @@ class TBentLineDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : TBentLineDownView {
+            val view : TBentLineDownView = TBentLineDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
