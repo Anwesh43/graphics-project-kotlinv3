@@ -184,4 +184,27 @@ class LineRotIntoLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineRotIntoLineView) {
+
+        private val animator : Animator = Animator(view)
+        private val lineRotIntoLine = LineRotIntoLine(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lineRotIntoLine.draw(canvas, paint)
+            animator.animate {
+                lineRotIntoLine.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lineRotIntoLine.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
