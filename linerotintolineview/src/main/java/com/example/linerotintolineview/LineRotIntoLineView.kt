@@ -44,7 +44,7 @@ fun Canvas.drawLineRotIntoLine(scale : Float, w : Float, h : Float, paint : Pain
     drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
         for (j in 0..1) {
             rotate(rot * (0.5f * dsc(2) - dsc(1)) * j)
-            drawLine(0f, 0f, 0f, -size * dsc(0), paint)
+            drawLine(0f, 0f,  -size * dsc(0), 0f, paint)
         }
     }
 }
@@ -134,7 +134,7 @@ class LineRotIntoLineView(ctx : Context) : View(ctx) {
 
         fun addNeighbor() {
             if (i < colors.size - 1) {
-                next = LRILNode(0)
+                next = LRILNode(i + 1)
                 next?.prev = this
             }
         }
