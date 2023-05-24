@@ -211,4 +211,12 @@ class ArcBentLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : ArcBentLineView {
+            val view : ArcBentLineView = ArcBentLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
