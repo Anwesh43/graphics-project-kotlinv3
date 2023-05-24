@@ -186,4 +186,27 @@ class ArcBentLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : ArcBentLineView) {
+
+        private val animator  :Animator = Animator(view)
+        private val abl : ArcBentLine = ArcBentLine(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            abl.draw(canvas, paint)
+            animator.animate {
+                abl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            abl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
