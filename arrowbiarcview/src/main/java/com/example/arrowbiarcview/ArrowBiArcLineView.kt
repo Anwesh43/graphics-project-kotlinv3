@@ -26,6 +26,7 @@ val rFactor : Float = 9.8f
 val delay : Long = 20
 val rot : Float = 90f
 val deg : Float = 180f
+val backColor : Int = Color.parseColor("#BDBDBD")
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -192,5 +193,29 @@ class ArrowBiArcLineView(ctx : Context) : View(ctx) {
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
         }
+    }
+
+    data class Renderer(var view : ArrowBiArcLineView) {
+
+        private val abal : ArrowBiArcLine = ArrowBiArcLine(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            abal.draw(canvas, paint)
+            animator.animate {
+                abal.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            abal.startUpdating {
+                animator.start()
+            }
+        }
+
     }
 }
