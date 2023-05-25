@@ -218,6 +218,14 @@ class ArrowBiArcLineView(ctx : Context) : View(ctx) {
                 animator.start()
             }
         }
+    }
 
+    companion object {
+
+        fun create(activity: Activity) : ArrowBiArcLineView {
+            val view : ArrowBiArcLineView = ArrowBiArcLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
     }
 }
