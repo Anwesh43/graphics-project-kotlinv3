@@ -44,7 +44,7 @@ fun Canvas.drawArcBentLine(scale : Float, w : Float, h : Float, paint : Paint) {
     }
     drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
         drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), 90f, 180f * dsc(0), false, paint)
-        drawXY(0f, -size) {
+        drawXY(0f, -size / 2) {
             rotate(rot * dsc(2))
             drawLine(0f, 0f, size * dsc(1), 0f, paint)
         }
@@ -57,6 +57,7 @@ fun Canvas.drawABLNode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
+    paint.style = Paint.Style.STROKE
     drawArcBentLine(scale, w, h, paint)
 }
 
