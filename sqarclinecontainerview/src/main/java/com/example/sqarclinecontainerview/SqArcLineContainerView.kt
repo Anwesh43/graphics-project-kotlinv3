@@ -212,4 +212,13 @@ class SqArcLineContainerView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : SqArcLineContainerView {
+            val view : SqArcLineContainerView = SqArcLineContainerView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
