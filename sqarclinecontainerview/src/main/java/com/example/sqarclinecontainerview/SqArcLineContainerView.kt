@@ -25,6 +25,7 @@ val sizeFactor : Float = 4.9f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val rot : Float = 180f
+val sqSizeFactor : Float = 3.2f
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -45,8 +46,8 @@ fun Canvas.drawSqArcLineContainer(scale : Float, w : Float, h : Float, paint : P
     drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
         drawLine(-size, 0f, -size + size * dsc(0), 0f, paint)
         drawArc(RectF(0f, -size / 2, size, size / 2), rot - rot * dsc(1), rot * dsc(1), true, paint)
-        drawXY(size * 0.9f, -h /2 + (h / 2) * dsc(2)) {
-            drawRect(RectF(0f, -size / 10, size / 10, 0f), paint)
+        drawXY(size - size / sqSizeFactor, -h /2 + (h / 2) * dsc(2)) {
+            drawRect(RectF(0f, -size / sqSizeFactor, size / sqSizeFactor, 0f), paint)
         }
     }
 }
