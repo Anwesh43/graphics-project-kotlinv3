@@ -123,4 +123,45 @@ class SqArcLineContainerView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class SALCNode(var i : Int = 0, val state : State = State()) {
+
+        private var next : SALCNode? = null
+        private var prev : SALCNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = SALCNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawSALCNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : SALCNode {
+            var curr : SALCNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
