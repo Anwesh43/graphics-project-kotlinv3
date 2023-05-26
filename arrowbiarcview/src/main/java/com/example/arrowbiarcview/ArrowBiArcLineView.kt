@@ -53,7 +53,7 @@ fun Canvas.drawArrowBiArcLine(scale : Float, w : Float, h : Float, paint : Paint
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f)
-                drawArc(RectF(-size, -size / 2, 0f, size / 2), deg, deg * dsc(0), true, paint)
+                drawArc(RectF(0f, -r, 2 * r, r), deg, deg * dsc(0), true, paint)
             }
         }
     }
