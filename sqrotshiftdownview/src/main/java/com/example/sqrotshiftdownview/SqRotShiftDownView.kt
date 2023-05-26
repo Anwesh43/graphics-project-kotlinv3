@@ -205,4 +205,13 @@ class SqRotShiftDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : SqRotShiftDownView {
+            val view : SqRotShiftDownView = SqRotShiftDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
