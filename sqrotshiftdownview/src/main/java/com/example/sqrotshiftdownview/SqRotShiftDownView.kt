@@ -180,4 +180,27 @@ class SqRotShiftDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SqRotShiftDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val srsd : SqRotShiftDown = SqRotShiftDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            srsd.draw(canvas, paint)
+            animator.animate {
+                srsd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            srsd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
