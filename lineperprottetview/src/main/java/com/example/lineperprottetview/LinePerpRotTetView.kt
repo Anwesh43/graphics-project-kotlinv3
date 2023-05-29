@@ -6,7 +6,6 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.Paint
 import android.graphics.Canvas
-import android.graphics.RectF
 import android.graphics.Color
 
 val colors : Array<Int> = arrayOf(
