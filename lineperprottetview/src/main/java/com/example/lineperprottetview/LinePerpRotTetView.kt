@@ -44,7 +44,7 @@ fun Canvas.drawLinePerpRotTet(scale : Float, w : Float, h : Float, paint : Paint
         scale.divideScale(it, parts)
     }
     drawXY(w / 2, h / 2 + (h / 2) * dsc(3)) {
-        rotate(rot * dsc(3))
+        rotate(rot * dsc(2))
         drawXY(0f, -h * 0.5f * (1 - dsc(0))) {
             drawLine(0f, 0f, 0f, -size, paint)
         }
