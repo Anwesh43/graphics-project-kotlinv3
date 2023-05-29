@@ -214,4 +214,13 @@ class LinePerpRotTetView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LinePerpRotTetView {
+            val view : LinePerpRotTetView = LinePerpRotTetView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
