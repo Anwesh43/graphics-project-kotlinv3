@@ -191,4 +191,27 @@ class BiLineCreatorArcView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiLineCreatorArcView) {
+
+        private val animator : Animator = Animator(view)
+        private val blca : BiLineCreatorArc = BiLineCreatorArc(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            blca.draw(canvas, paint)
+            animator.animate {
+                blca.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            blca.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
