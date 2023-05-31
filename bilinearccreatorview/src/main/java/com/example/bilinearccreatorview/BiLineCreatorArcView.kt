@@ -216,4 +216,13 @@ class BiLineCreatorArcView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BiLineCreatorArcView {
+            val view : BiLineCreatorArcView = BiLineCreatorArcView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
