@@ -186,4 +186,27 @@ class SqArcDownRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SqArcDownRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val sadr : SqArcDownRot = SqArcDownRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            sadr.draw(canvas, paint)
+            animator.animate {
+                sadr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            sadr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
