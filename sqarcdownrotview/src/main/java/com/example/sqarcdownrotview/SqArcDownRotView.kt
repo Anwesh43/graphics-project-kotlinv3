@@ -45,8 +45,8 @@ fun Canvas.drawSqArcDownRot(scale : Float, w : Float, h : Float, paint : Paint) 
     drawXY(w / 2 + (w / 2) * dsc(3), h / 2) {
         rotate(rot * dsc(2))
         drawXY(0f, -size) {
-            drawRect(RectF(0f, 0f, size, size * dsc(0)), paint)
-            drawArc(RectF(-size / 2, -size / 4, size, size / 4), 180f, 180f * dsc(1), true, paint)
+            drawRect(RectF(0f, -size * dsc(0), size, 0f), paint)
+            drawArc(RectF(size / 2, -size / 4, size, size / 4), 180f, 180f * dsc(1), true, paint)
         }
     }
 }
