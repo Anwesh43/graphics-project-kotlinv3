@@ -189,4 +189,27 @@ class SquareLineDropRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SquareLineDropRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val sldr : SquareLineDropRight = SquareLineDropRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            sldr.draw(canvas, paint)
+            animator.animate {
+                sldr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            sldr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
