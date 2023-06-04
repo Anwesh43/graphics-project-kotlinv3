@@ -214,4 +214,13 @@ class SquareLineDropRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : SquareLineDropRightView {
+            val view : SquareLineDropRightView = SquareLineDropRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
