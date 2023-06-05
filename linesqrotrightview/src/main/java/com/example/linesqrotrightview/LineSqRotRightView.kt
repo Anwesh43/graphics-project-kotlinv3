@@ -211,4 +211,13 @@ class LineSqRotRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineSqRotRightView {
+            val view : LineSqRotRightView = LineSqRotRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
