@@ -213,4 +213,12 @@ class BlockLineRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : BlockLineRightView {
+            val view : BlockLineRightView = BlockLineRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
