@@ -188,4 +188,27 @@ class BlockLineRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BlockLineRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val blr : BlockLineRight = BlockLineRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            blr.draw(canvas, paint)
+            animator.animate {
+                blr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            blr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
