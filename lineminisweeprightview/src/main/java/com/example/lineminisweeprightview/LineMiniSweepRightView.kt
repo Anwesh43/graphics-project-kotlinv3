@@ -135,6 +135,17 @@ class LineMiniSweepRightView(ctx : Context) : View(ctx) {
         private var next : LMSRNode? = null
         private var prev : LMSRNode? = null
 
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = LMSRNode(i + 1)
+                next?.prev = this
+            }
+        }
+
         fun draw(canvas : Canvas, paint : Paint) {
             canvas.drawLMSRNode(i, state.scale, paint)
         }
