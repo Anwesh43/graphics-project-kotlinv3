@@ -178,4 +178,27 @@ class LineMiniSweepRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineMiniSweepRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val lmsr : LineMiniSweepRight = LineMiniSweepRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lmsr.draw(canvas, paint)
+            animator.animate {
+                lmsr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lmsr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
