@@ -203,4 +203,12 @@ class LineMiniSweepRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : LineMiniSweepRightView {
+            val view : LineMiniSweepRightView = LineMiniSweepRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
