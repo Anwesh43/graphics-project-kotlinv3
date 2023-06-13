@@ -42,13 +42,14 @@ fun Canvas.drawLineMiniSweepRight(scale : Float, w : Float, h : Float, paint : P
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
         for (j in 0..1) {
             drawXY(0f, 0f) {
-                rotate(rot * dsc(1))
+                rotate(rot * dsc(1) * j)
                 drawLine(0f, 0f, -size * dsc(0), 0f, paint)
             }
         }
+        drawArc(RectF(-size, -size, size, size), 180f + rot, (360f - rot) * dsc(2), false, paint)
 
 
     }
@@ -60,6 +61,7 @@ fun Canvas.drawLMSRNode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
+    paint.style = Paint.Style.STROKE
     drawLineMiniSweepRight(scale, w, h, paint)
 }
 
