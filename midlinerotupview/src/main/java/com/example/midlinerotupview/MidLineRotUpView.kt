@@ -192,4 +192,27 @@ class MidLineRotUpView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : MidLineRotUpView) {
+
+        private val animator : Animator = Animator(view)
+        private val mlru : MidLineRotUp = MidLineRotUp(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            mlru.draw(canvas, paint)
+            animator.animate {
+                mlru.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            mlru.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
