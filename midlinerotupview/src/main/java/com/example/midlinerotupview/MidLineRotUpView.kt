@@ -42,11 +42,12 @@ fun Canvas.drawMidLineRotUp(scale : Float, w : Float, h : Float, paint : Paint) 
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2, h / 2 - (h / 2 + size) * dsc(3)) {
         drawXY(0f, -h / 2 + (h / 2) * dsc(1)) {
+            rotate(rot * dsc(2))
             drawLine(0f, 0f, 0f, -size, paint)
         }
-        rotate(rot * dsc(2))
+
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f)
@@ -137,7 +138,7 @@ class MidLineRotUpView(ctx : Context) : View(ctx) {
         private var prev : MLRUNode? = null
 
         init {
-
+            addNeighbor()
         }
 
         fun addNeighbor() {
