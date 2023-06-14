@@ -3,13 +3,13 @@ package com.example.graphicsprojectv3
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.lineminisweeprightview.LineMiniSweepRightView
+import com.example.midlinerotupview.MidLineRotUpView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
-        LineMiniSweepRightView.create(this)
+        MidLineRotUpView.create(this)
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 }
