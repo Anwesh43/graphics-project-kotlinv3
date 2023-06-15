@@ -211,4 +211,13 @@ class SqLineSlantRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : SqLineSlantRightView {
+            val view : SqLineSlantRightView = SqLineSlantRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
