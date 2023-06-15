@@ -186,4 +186,27 @@ class SqLineSlantRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SqLineSlantRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val slsr : SqLineSlantRight = SqLineSlantRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            slsr.draw(canvas, paint)
+            animator.animate {
+                slsr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            slsr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
