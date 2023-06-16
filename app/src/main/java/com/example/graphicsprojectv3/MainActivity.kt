@@ -3,13 +3,13 @@ package com.example.graphicsprojectv3
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.sqlineslantrightview.SqLineSlantRightView
+import com.example.halfarclineslantview.HalfArcLineSlantView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
-        SqLineSlantRightView.create(this)
+        HalfArcLineSlantView.create(this)
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 }
