@@ -186,4 +186,27 @@ class HalfArcLineSlantView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : HalfArcLineSlantView) {
+
+        private val animator : Animator = Animator(view)
+        private val hals : HalfArcLineSlant = HalfArcLineSlant(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            hals.draw(canvas, paint)
+            animator.animate {
+                hals.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            hals.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
