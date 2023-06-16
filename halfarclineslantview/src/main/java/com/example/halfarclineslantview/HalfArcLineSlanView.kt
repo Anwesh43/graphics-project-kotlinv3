@@ -211,4 +211,13 @@ class HalfArcLineSlantView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : HalfArcLineSlantView {
+            val view : HalfArcLineSlantView = HalfArcLineSlantView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
