@@ -42,11 +42,11 @@ fun Canvas.drawArcDivideLineRight(scale : Float, w : Float, h : Float, paint : P
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 rotate(rot * dsc(1) * (1f - 2  * j))
-                drawArc(RectF(0f, -size / 2, size, size / 2), 0f, 180f * dsc(0).divideScale(j, 2), true, paint)
+                drawArc(RectF(0f, -size / 2, size, size / 2), 180f * j, 180f * dsc(0).divideScale(j, 2), true, paint)
             }
         }
         drawXY(-w / 2 + (w / 2) * dsc(2), 0f) {
