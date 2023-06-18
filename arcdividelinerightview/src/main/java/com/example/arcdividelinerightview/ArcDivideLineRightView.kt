@@ -215,4 +215,13 @@ class ArcDivideLineRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : ArcDivideLineRightView {
+            val view : ArcDivideLineRightView = ArcDivideLineRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
