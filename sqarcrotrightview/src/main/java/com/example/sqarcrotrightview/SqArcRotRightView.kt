@@ -82,7 +82,7 @@ class SqArcRotRightView(ctx : Context) : View(ctx) {
 
     data class State(var scale : Float = 0f, var dir : Float = 0f, var prevScale : Float = 0f) {
 
-        fun update(cb : () -> Float) {
+        fun update(cb : (Float) -> Unit) {
             scale += scGap * dir
             if (Math.abs(scale - prevScale) > 1) {
                 scale = prevScale + dir
@@ -125,6 +125,47 @@ class SqArcRotRightView(ctx : Context) : View(ctx) {
             if (animated) {
                 animated = false
             }
+        }
+    }
+
+    data class SARRNode(var i : Int = 0, val state : State = State()) {
+
+        private var next : SARRNode? = null
+        private var prev : SARRNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = SARRNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawSARRNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : SARRNode {
+            var curr : SARRNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
         }
     }
 }
