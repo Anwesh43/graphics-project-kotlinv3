@@ -212,4 +212,13 @@ class SqArcCapRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : SqArcCapRotView {
+            val view : SqArcCapRotView = SqArcCapRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
