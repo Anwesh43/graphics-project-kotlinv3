@@ -42,10 +42,10 @@ fun Canvas.drawLineCornerSqDown(scale : Float, w : Float, h : Float, paint : Pai
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(3)) {
         for (j in 0..1) {
-            drawXY(0f, -size) {
-                scale(1f, 1f - 2 * j)
+            drawXY(0f, 0f) {
+                scale(1f - 2 * j,  1f)
                 drawXY(size / 2, 0f) {
                     rotate(rot * (1 - dsc(2)))
                     drawLine(0f, 0f, 0f, -size * dsc(1), paint)
