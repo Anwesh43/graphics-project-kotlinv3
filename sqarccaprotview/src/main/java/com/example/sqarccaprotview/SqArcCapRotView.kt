@@ -187,4 +187,27 @@ class SqArcCapRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SqArcCapRotView) {
+
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val sacr : SqArcCapRot = SqArcCapRot(0)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            sacr.draw(canvas, paint)
+            animator.animate {
+                sacr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            sacr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
