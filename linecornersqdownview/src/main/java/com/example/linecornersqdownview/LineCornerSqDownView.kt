@@ -216,4 +216,13 @@ class LineCornerSqDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineCornerSqDownView {
+            val view : LineCornerSqDownView = LineCornerSqDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
