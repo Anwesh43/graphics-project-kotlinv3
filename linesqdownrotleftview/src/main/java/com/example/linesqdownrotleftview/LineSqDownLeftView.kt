@@ -8,6 +8,7 @@ import android.graphics.Paint
 import android.graphics.Color
 import android.graphics.Canvas
 import android.graphics.RectF
+import android.util.Log
 
 val colors : Array<Int> = arrayOf(
     "#1A237E",
@@ -16,7 +17,7 @@ val colors : Array<Int> = arrayOf(
     "#C51162",
     "#00C853"
 ).map {
-    Color.parseColor("#BDBDBD")
+    Color.parseColor(it)
 }.toTypedArray()
 val sizeFactor : Float = 4.9f
 val strokeFactor : Float = 90f
@@ -42,10 +43,11 @@ fun Canvas.drawLineSqDownLeft(scale : Float, w : Float, h : Float, paint : Paint
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
+    Log.d("SCALE", "$scale, ${dsc(0)}")
     drawXY(w / 2 - (w / 2 + size) * dsc(3), h / 2) {
         drawXY(0f, 0f) {
             rotate(rot * dsc(2))
-            drawLine(-size, 0f, -size + size * dsc(0), 0f, paint)
+            drawLine(-size, -paint.strokeWidth / 2, -size + size * dsc(0), -paint.strokeWidth / 2, paint)
         }
         drawRect(RectF(-size, 0f, 0f, size * dsc(1)), paint)
     }
@@ -100,7 +102,7 @@ class LineSqDownLeftView(ctx : Context) : View(ctx) {
     data class Animator(var view : View, var animated : Boolean = false) {
 
         fun animate(cb : () -> Unit) {
-            if (!animated) {
+            if (animated) {
                 cb()
                 try {
                     Thread.sleep(delay)
