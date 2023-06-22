@@ -186,4 +186,27 @@ class LineSqDownLeftView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineSqDownLeftView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val lsdl : LineSqDownLeft = LineSqDownLeft(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lsdl.draw(canvas, paint)
+            animator.animate {
+                lsdl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lsdl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
