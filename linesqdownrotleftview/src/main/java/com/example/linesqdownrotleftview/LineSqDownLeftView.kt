@@ -211,4 +211,13 @@ class LineSqDownLeftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineSqDownLeftView {
+            val view : LineSqDownLeftView = LineSqDownLeftView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
