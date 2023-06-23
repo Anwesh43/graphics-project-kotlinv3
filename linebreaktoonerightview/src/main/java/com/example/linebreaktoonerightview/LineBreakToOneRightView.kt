@@ -212,4 +212,13 @@ class LineBreakToOneRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineBreakToOneRightView {
+            val view : LineBreakToOneRightView = LineBreakToOneRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
