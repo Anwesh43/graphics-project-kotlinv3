@@ -185,4 +185,27 @@ class LineArcCompleteUpView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineArcCompleteUpView) {
+
+        private val animator : Animator = Animator(view)
+        private val lacu : LineArcCompleteUp = LineArcCompleteUp(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lacu.draw(canvas, paint)
+            animator.animate {
+                lacu.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lacu.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
