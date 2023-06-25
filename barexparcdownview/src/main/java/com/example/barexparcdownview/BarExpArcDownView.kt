@@ -209,4 +209,13 @@ class BarExpArcDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BarExpArcDownView {
+            val view : BarExpArcDownView = BarExpArcDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
