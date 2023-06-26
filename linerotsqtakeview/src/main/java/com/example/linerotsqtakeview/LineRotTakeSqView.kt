@@ -211,4 +211,13 @@ class LineRotTakeSqView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineRotTakeSqView {
+            val view : LineRotTakeSqView = LineRotTakeSqView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
