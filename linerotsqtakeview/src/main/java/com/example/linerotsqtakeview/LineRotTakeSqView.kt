@@ -42,11 +42,13 @@ fun Canvas.drawLineRotSqTake(scale : Float, w : Float, h : Float, paint : Paint)
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
-        rotate(rot * dsc(1))
-        drawLine(0f, 0f, size * dsc(0), 0f, paint)
+    drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
+        drawXY(0f, 0f) {
+            rotate(rot * dsc(1))
+            drawLine(0f, 0f, size * dsc(0), 0f, paint)
+        }
         drawXY(-w / 2 + (w / 2) * dsc(2), 0f) {
-            drawRect(RectF(-size, -size / 2, 0f, size / 2), paint)
+            drawRect(RectF(-size, 0f, 0f, size), paint)
         }
     }
 }
