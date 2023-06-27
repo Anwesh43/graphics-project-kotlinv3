@@ -218,4 +218,13 @@ class LineArcSqUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineArcSqUpView {
+            val view : LineArcSqUpView = LineArcSqUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
