@@ -3,13 +3,13 @@ package com.example.graphicsprojectv3
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.linerotsqtakeview.LineRotTakeSqView
+import com.example.linearcsqupview.LineArcSqUpView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
-        LineRotTakeSqView.create(this)
+        LineArcSqUpView.create(this)
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 }
