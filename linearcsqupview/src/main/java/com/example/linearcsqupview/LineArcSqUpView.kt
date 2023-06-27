@@ -42,10 +42,10 @@ fun Canvas.drawLineArcSqUp(scale : Float, w : Float, h : Float, paint : Paint) {
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2 + (w / 2) * dsc(3), h / 2) {
         for (j in 0..1) {
             drawXY(0f, -h / 2 + (h / 2) * dsc(0)) {
-                rotate(rot * dsc(1))
+                rotate(rot * dsc(1) * j)
                 drawLine(0f, 0f, 0f, -size, paint)
             }
             paint.style = Paint.Style.STROKE
