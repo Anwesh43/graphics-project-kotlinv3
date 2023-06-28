@@ -212,4 +212,13 @@ class LineSweepSlantView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineSweepSlantView {
+            val view : LineSweepSlantView = LineSweepSlantView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
