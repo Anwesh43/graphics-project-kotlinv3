@@ -187,4 +187,27 @@ class LineSweepSlantView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineSweepSlantView) {
+
+        private val lss : LineSweepSlant = LineSweepSlant(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lss.draw(canvas, paint)
+            animator.animate {
+                lss.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lss.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
