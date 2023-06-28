@@ -3,13 +3,13 @@ package com.example.graphicsprojectv3
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.linearcsqupview.LineArcSqUpView
+import com.example.linesweepslantview.LineSweepSlantView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
-        LineArcSqUpView.create(this)
+        LineSweepSlantView.create(this)
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 }
