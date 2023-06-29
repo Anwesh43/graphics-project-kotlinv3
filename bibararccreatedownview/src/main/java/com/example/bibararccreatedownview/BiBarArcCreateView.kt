@@ -212,4 +212,13 @@ class BiBarArcCreateView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BiBarArcCreateView {
+            val view : BiBarArcCreateView = BiBarArcCreateView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
