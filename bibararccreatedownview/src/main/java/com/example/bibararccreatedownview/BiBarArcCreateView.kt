@@ -187,4 +187,27 @@ class BiBarArcCreateView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiBarArcCreateView) {
+
+        private val bbac : BiBarArcCreate = BiBarArcCreate(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bbac.draw(canvas, paint)
+            animator.animate {
+                bbac.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bbac.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
