@@ -190,4 +190,27 @@ class DropBallLineDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : DropBallLineDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val dbld : DropBallLineDown = DropBallLineDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            dbld.draw(canvas, paint)
+            animator.animate {
+                dbld.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            dbld.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
