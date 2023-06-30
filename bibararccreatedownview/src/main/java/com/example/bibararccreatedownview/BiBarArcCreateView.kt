@@ -42,13 +42,11 @@ fun Canvas.drawBiBarArcCreate(scale : Float, w : Float, h : Float, paint : Paint
         scale.divideScale(it, parts)
     }
     drawXY(w / 2, h / 2) {
-        rotate(rot * dsc(2))
         for (j in 0..1) {
-            drawXY(0f, (h / 2 + size) * (1f - 2 * j) * dsc(5)) {
-                scale(1f - 2 * j, 1f)
+            drawXY(-size / 2 + size  * j, (h / 2 + size) * (1f - 2 * j) * dsc(5)) {
                 rotate(rot * j * dsc(4))
-                drawRect(RectF(-size, -size * 0.5f * dsc(j), 0f, 0f), paint)
-                drawArc(RectF(-size, -size / 2, 0f, size / 2), 0f, rot * dsc(3 - j), true, paint)
+                drawRect(RectF(-size / 2, -size * 0.5f, size / 2, -size / 2 + size * 0.5f * dsc(j)), paint)
+                drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), 0f, rot * dsc(3 - j), true, paint)
             }
         }
     }
