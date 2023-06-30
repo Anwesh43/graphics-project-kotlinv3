@@ -215,4 +215,12 @@ class DropBallLineDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : DropBallLineDownView {
+            val view : DropBallLineDownView = DropBallLineDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
