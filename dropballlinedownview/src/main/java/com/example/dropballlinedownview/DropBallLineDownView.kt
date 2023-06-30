@@ -47,8 +47,8 @@ fun Canvas.drawDropBallLineDown(scale : Float, w : Float, h : Float, paint : Pai
             drawCircle(0f, 0f, size / 4, paint)
         }
         for (j in 0..1) {
-            drawXY(0f, 0f) {
-                rotate(rot * dsc(2) * j)
+            drawXY(-size / 4, 0f) {
+                rotate(rot * dsc(2) * (1f - 2 * j))
                 drawLine(0f, 0f, -size * dsc(1), 0f, paint)
             }
         }
