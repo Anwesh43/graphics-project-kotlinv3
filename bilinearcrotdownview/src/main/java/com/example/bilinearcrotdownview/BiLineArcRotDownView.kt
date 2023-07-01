@@ -157,15 +157,38 @@ class BiLineArcRotDownView(ctx : Context) : View(ctx) {
         }
 
         fun getNext(dir : Int, cb : () -> Unit) : BLARDNode {
-           var curr : BLARDNode? = prev
-           if (dir == 1) {
+            var curr : BLARDNode? = prev
+            if (dir == 1) {
                curr = next
-           }
-           if (curr != null) {
+            }
+            if (curr != null) {
                return curr
-           }
+            }
             cb()
             return this
+        }
+    }
+
+    data class BiLineArcRotDown(var i : Int) {
+
+        private var curr : BLARDNode = BLARDNode(0)
+        private var dir : Int = 1
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            curr.draw(canvas, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            curr.update {
+                curr = curr.getNext(dir) {
+                    dir *= -1
+                }
+                cb(it)
+            }
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            curr.startUpdating(cb)
         }
     }
 }
