@@ -191,4 +191,27 @@ class BiLineArcRotDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiLineArcRotDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val blard : BiLineArcRotDown = BiLineArcRotDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            blard.draw(canvas, paint)
+            animator.animate {
+                blard.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            blard.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
