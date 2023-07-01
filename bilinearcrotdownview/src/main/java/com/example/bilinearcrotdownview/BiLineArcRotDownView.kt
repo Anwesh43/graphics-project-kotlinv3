@@ -99,4 +99,73 @@ class BiLineArcRotDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class Animator(var view : View, var animated : Boolean = false) {
+
+        fun animate(cb : () -> Unit) {
+            if (animated) {
+                cb()
+                try {
+                    Thread.sleep(delay)
+                    view.invalidate()
+                } catch(ex : Exception) {
+
+                }
+            }
+        }
+
+        fun start() {
+            if (!animated) {
+                animated = true
+                view.postInvalidate()
+            }
+        }
+
+        fun stop() {
+            if (animated) {
+                animated = false
+            }
+        }
+    }
+
+    data class BLARDNode(var i : Int = 0, val state : State = State()) {
+
+        private var next : BLARDNode? = null
+        private var prev : BLARDNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = BLARDNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawBLARDNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : BLARDNode {
+           var curr : BLARDNode? = prev
+           if (dir == 1) {
+               curr = next
+           }
+           if (curr != null) {
+               return curr
+           }
+            cb()
+            return this
+        }
+    }
 }
