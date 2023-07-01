@@ -42,13 +42,13 @@ fun Canvas.drawBiLineArcRotDown(scale : Float, w : Float, h : Float, paint : Pai
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2, h / 2 + (h / 2 + size * 1.5f) * dsc(3)) {
         drawArc(RectF(-size / 2, -size / 2, size /2 , size / 2), 0f, 360f * dsc(0), true, paint)
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f - 2 * j)
                 drawXY((w / 2) * (1 - dsc(1)), size / 2) {
-                    rotate(rot * dsc(1))
+                    rotate(rot * dsc(2))
                     drawLine(0f, 0f, size, 0f, paint)
                 }
             }
