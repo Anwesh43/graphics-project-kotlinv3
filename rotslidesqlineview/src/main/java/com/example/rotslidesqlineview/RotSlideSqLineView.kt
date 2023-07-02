@@ -43,13 +43,13 @@ fun Canvas.drawRotSlideSqLine(scale : Float, w : Float, h : Float, paint : Paint
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    val r : Float = Math.min(w, h) / rFactor
+    val r : Float = size / rFactor
     drawXY(w / 2, h / 2 - (h / 2 + r + size) * dsc(4)) {
         drawXY(w / 2 - (w / 2) * dsc(1), 0f) {
             rotate(rot * dsc(2))
             drawLine(0f, 0f, size, 0f, paint)
         }
-        drawXY(r * dsc(3), 0f) {
+        drawXY(-r + r * dsc(3), 0f) {
             drawArc(RectF(-r, -r, r, r), 0f, 360f * dsc(0), true, paint)
         }
     }
