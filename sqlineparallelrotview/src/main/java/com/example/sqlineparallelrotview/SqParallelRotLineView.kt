@@ -42,7 +42,7 @@ fun Canvas.drawSqParallelRotLine(scale : Float, w : Float, h : Float, paint : Pa
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2, h / 2 + (h / 2 + size + size / 4) * dsc(3)) {
         drawRect(RectF(-size * 0.25f * dsc(0), -size / 4, size * 0.25f * dsc(0), size / 4), paint)
         for (j in 0..1) {
             drawXY(0f, 0f) {
