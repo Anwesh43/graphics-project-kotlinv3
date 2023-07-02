@@ -215,4 +215,13 @@ class RotSlideSqLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : RotSlideSqLineView {
+            val view : RotSlideSqLineView = RotSlideSqLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
