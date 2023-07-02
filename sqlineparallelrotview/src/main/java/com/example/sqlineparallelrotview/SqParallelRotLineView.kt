@@ -191,4 +191,27 @@ class SqParallelRotLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SqParallelRotLineView) {
+
+        private val animator : Animator = Animator(view)
+        private val sprl : SqParallelRotLine = SqParallelRotLine(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            sprl.draw(canvas, paint)
+            animator.animate {
+                sprl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            sprl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
