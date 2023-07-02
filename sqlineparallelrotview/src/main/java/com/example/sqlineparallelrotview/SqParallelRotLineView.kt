@@ -216,4 +216,13 @@ class SqParallelRotLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : SqParallelRotLineView {
+            val view : SqParallelRotLineView = SqParallelRotLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
