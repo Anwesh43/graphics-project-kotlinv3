@@ -190,4 +190,27 @@ class RotSlideSqLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : RotSlideSqLineView) {
+
+        private val animator : Animator = Animator(view)
+        private val rssl : RotSlideSqLine = RotSlideSqLine(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            rssl.draw(canvas, paint)
+            animator.animate {
+                rssl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rssl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
