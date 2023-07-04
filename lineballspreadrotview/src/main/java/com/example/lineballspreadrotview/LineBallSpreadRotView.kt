@@ -7,6 +7,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.app.Activity
 import android.content.Context
+import android.util.Log
 
 val colors : Array<Int> = arrayOf(
     "#1A237E",
@@ -23,7 +24,7 @@ val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
-val rot : Float = 60f
+val rot : Float = 30f
 val deg : Float = 90f
 val rFactor : Float = 12.2f
 
@@ -34,6 +35,7 @@ fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale
 fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     save()
     translate(x, y)
+    cb()
     restore()
 }
 
@@ -42,10 +44,11 @@ fun Canvas.drawLineBallSpreadRot(scale : Float, w : Float, h : Float, paint : Pa
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
+    Log.d("${dsc(0)}", "${dsc(1)}")
     val r : Float = Math.min(w, h) / rFactor
     drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
         rotate(deg * dsc(2))
-        drawXY(0f, -(h / 2 + r) * (1 - dsc(0))) {
+        drawXY(0f, (h / 2 + r) * (1 - dsc(0))) {
             drawCircle(0f, 0f, r, paint)
             for (j in 0..1) {
                 drawXY(0f, 0f) {
