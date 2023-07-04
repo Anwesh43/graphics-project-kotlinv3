@@ -45,7 +45,7 @@ fun Canvas.drawBallDropLineRot(scale : Float, w : Float, h : Float, paint : Pain
     drawXY(w / 2, h / 2) {
         for (j in 0..1) {
             drawXY((w / 2) * (1 - j) * dsc(3), (h / 2) * j * dsc(3)) {
-                rotate(rot * j * dsc(2) * (1f - 2 * j))
+                rotate(rot * (j + 1) * dsc(2).divideScale(j, 2) * (1f - 2 * j))
                 drawXY(0f, -r - h / 2 + (h / 2 - size + r) * dsc(1)) {
                     drawCircle(0f, 0f, r, paint)
                 }
