@@ -215,4 +215,13 @@ class BallDropLineRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BallDropLineRotView {
+            val view : BallDropLineRotView = BallDropLineRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
