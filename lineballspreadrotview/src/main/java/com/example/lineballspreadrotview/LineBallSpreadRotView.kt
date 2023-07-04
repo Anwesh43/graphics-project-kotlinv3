@@ -217,4 +217,13 @@ class LineBallSpreadRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineBallSpreadRotView {
+            val view : LineBallSpreadRotView = LineBallSpreadRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
