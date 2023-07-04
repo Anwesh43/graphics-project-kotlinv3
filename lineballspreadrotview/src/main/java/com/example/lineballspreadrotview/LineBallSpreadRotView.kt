@@ -39,15 +39,15 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
-fun Canvas.drawLineBallSpreadRot(scale : Float, w : Float, h : Float, paint : Paint) {
+fun Canvas.drawLineBallSpreadRot(scale : Float, direction : Int, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
     Log.d("${dsc(0)}", "${dsc(1)}")
     val r : Float = Math.min(w, h) / rFactor
-    drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
-        rotate(deg * dsc(2))
+    drawXY(w / 2 + (w / 2 + size) * dsc(3) * direction, h / 2) {
+        rotate(deg * dsc(2) * direction)
         drawXY(0f, (h / 2 + r) * (1 - dsc(0))) {
             drawCircle(0f, 0f, r, paint)
             for (j in 0..1) {
@@ -66,7 +66,7 @@ fun Canvas.drawLBSRNode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
-    drawLineBallSpreadRot(scale, w, h, paint)
+    drawLineBallSpreadRot(scale, 1 - (2 * (i % 2)), w, h, paint)
 }
 
 class LineBallSpreadRotView(ctx : Context) : View(ctx) {
