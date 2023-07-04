@@ -190,4 +190,27 @@ class BallDropLineRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BallDropLineRotView) {
+
+        private val bdlr : BallDropLineRot = BallDropLineRot(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bdlr.draw(canvas, paint)
+            animator.animate {
+                bdlr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bdlr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
