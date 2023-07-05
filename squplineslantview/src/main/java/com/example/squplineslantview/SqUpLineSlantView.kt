@@ -204,8 +204,8 @@ class SqUpLineSlantView(ctx : Context) : View(ctx) {
             canvas.drawColor(backColor)
             suls.draw(canvas, paint)
             animator.animate {
-                suls.startUpdating {
-                    animator.start()
+                suls.update {
+                    animator.stop()
                 }
             }
         }
