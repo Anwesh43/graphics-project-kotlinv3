@@ -216,4 +216,13 @@ class SqUpLineSlantView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : SqUpLineSlantView {
+            val view : SqUpLineSlantView = SqUpLineSlantView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
