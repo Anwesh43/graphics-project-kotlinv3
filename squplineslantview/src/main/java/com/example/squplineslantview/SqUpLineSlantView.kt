@@ -191,4 +191,27 @@ class SqUpLineSlantView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SqUpLineSlantView) {
+
+        private val animator : Animator = Animator(view)
+        private val suls : SqUpLineSlant = SqUpLineSlant(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            suls.draw(canvas, paint)
+            animator.animate {
+                suls.startUpdating {
+                    animator.start()
+                }
+            }
+        }
+
+        fun handleTap() {
+            suls.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
