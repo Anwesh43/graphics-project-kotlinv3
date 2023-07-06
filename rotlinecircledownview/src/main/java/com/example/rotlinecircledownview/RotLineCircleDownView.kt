@@ -45,10 +45,11 @@ fun Canvas.drawRotLineCircleDown(scale : Float, w : Float, h : Float, paint : Pa
     drawXY(w / 2 - (w / 2) * dsc(3), h / 2) {
         for (j in 0..1) {
             drawXY(0f, 0f) {
-                scale(1f - 2 * j, 1f)
                 rotate(rot * (1 + dsc(2)) * j)
-                drawLine(0f, 0f, 0f, -size * dsc(0), paint)
-                drawArc(RectF(-size, -size / 2, 0f, size /2), 180f, 180f * dsc(1), true, paint)
+                drawLine(0f, 0f,  -size * dsc(0) * (1f - 2 * j),0f, paint)
+                drawXY( size * j, 0f) {
+                    drawArc(RectF(-size, -size / 2, 0f, size / 2), 180f, 180f * dsc(1), true, paint)
+                }
             }
         }
     }
