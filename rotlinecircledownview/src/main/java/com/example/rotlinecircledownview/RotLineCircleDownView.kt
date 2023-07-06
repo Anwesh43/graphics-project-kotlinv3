@@ -214,4 +214,13 @@ class RotLineCircleDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : RotLineCircleDownView {
+            val view : RotLineCircleDownView = RotLineCircleDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
