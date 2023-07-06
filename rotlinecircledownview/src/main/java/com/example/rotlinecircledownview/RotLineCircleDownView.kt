@@ -189,4 +189,27 @@ class RotLineCircleDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : RotLineCircleDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val rlc : RotLineCircleDown = RotLineCircleDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            rlc.draw(canvas, paint)
+            animator.animate {
+                rlc.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rlc.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
