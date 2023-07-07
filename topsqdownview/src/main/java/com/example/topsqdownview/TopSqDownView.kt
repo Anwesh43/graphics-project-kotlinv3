@@ -211,4 +211,13 @@ class TopSqDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : TopSqDownView {
+            val view : TopSqDownView = TopSqDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
