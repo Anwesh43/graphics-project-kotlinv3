@@ -186,4 +186,27 @@ class TopSqDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : TopSqDownView) {
+
+        private val tsd : TopSqDown = TopSqDown(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            tsd.draw(canvas, paint)
+            animator.animate {
+                tsd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            tsd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
