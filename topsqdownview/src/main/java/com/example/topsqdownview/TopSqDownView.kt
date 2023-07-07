@@ -47,7 +47,7 @@ fun Canvas.drawTopSqDown(scale : Float, w : Float, h : Float, paint : Paint) {
             rotate(rot * dsc(2))
             drawRect(RectF(0f, -size, size, 0f), paint)
         }
-        drawRect(RectF(-size, 0f, 0f, size), paint)
+        drawRect(RectF(-size, 0f, 0f, size * dsc(0)), paint)
     }
 }
 
