@@ -18,7 +18,7 @@ val colors : Array<Int> = arrayOf(
 ).map {
     Color.parseColor(it)
 }.toTypedArray()
-val parts : Int = 5
+val parts : Int = 4
 val scGap : Float = 0.04f / parts
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
@@ -44,11 +44,11 @@ fun Canvas.drawLineSqCatchDrop(scale : Float, w : Float, h : Float, paint : Pain
     val size : Float = Math.min(w, h) / sizeFactor
     val sqSize : Float = size / 4
     drawXY(w / 2, h / 2) {
-        drawXY(sqSize / 2 - size / 2 + (size / 2) * dsc(2), -h / 2 + (h / 2) * dsc(1)) {
-            rotate(rot * dsc(3))
+        drawXY(-(size / 2 - sqSize / 2) * (1 - dsc(2)), -h / 2 + (h / 2) * dsc(1) + (h / 2 + sqSize) * dsc(3).divideScale(1, 2)) {
+            rotate(rot * dsc(3).divideScale(0, 2))
             drawRect(RectF(-sqSize, -sqSize, 0f, 0f), paint)
         }
-        drawXY(-w * 0.5f * dsc(4), 0f) {
+        drawXY(-w * 0.5f * dsc(3), 0f) {
             drawLine(0f, 0f, -size * dsc(0), 0f, paint)
         }
     }
