@@ -214,4 +214,13 @@ class LineSqCatchDropView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineSqCatchDropView {
+            val view : LineSqCatchDropView = LineSqCatchDropView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
