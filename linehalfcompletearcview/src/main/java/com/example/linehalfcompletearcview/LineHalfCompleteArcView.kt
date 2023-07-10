@@ -188,4 +188,27 @@ class LineHalfCompleteArcView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineHalfCompleteArcView) {
+
+        private val lhca : LineHalfCompleteArc = LineHalfCompleteArc(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lhca.draw(canvas, paint)
+            animator.animate {
+                lhca.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lhca.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
