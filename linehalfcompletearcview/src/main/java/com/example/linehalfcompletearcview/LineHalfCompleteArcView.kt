@@ -213,4 +213,13 @@ class LineHalfCompleteArcView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineHalfCompleteArcView {
+            val view : LineHalfCompleteArcView = LineHalfCompleteArcView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
