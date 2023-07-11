@@ -212,4 +212,13 @@ class LineHalfArcToBallView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineHalfArcToBallView  {
+            val view : LineHalfArcToBallView = LineHalfArcToBallView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
