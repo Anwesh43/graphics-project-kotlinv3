@@ -47,7 +47,7 @@ fun Canvas.drawLineHalfArcToBall(scale : Float, w : Float, h : Float, paint : Pa
             drawXY((size - r) * (1 - 2 * j) * (1 - dsc(2)), 0f) {
                 drawArc(RectF(-r, -r, r, r), 180f * j, 180f * dsc(1), true, paint)
             }
-            drawLine(0f, 0f, size * (1f - 2 * j) * (1 - dsc(2)), 0f, paint)
+            drawLine(0f, 0f, size * (1f - 2 * j) * (dsc(0) - dsc(2)), 0f, paint)
         }
     }
 }
