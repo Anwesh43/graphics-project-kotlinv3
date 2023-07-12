@@ -211,4 +211,13 @@ class ArcTriLineDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : ArcTriLineDownView {
+            val view : ArcTriLineDownView = ArcTriLineDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
