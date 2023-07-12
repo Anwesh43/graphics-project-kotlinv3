@@ -186,4 +186,27 @@ class ArcTriLineDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : ArcTriLineDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val altd : ArcLineTriDown = ArcLineTriDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            altd.draw(canvas, paint)
+            animator.animate {
+                altd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            altd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
