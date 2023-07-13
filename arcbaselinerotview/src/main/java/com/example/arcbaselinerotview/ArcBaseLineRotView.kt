@@ -217,4 +217,13 @@ class ArcBaseLineRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : ArcBaseLineRotView {
+            val view : ArcBaseLineRotView = ArcBaseLineRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
