@@ -37,12 +37,13 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
-fun Canvas.drawLineRotSqExpand(scale : Float, w : Float, h : Float, paint : Paint) {
+fun Canvas.drawLineRotSqExpand(scale : Float, w : Float, h : Float, j : Int, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = {
-        scale.divideScale(it, parts)
+        scale.divideScale(it, parts + j)
     }
-    drawXY(w / 2 + (w / 2) * dsc(3), h / 2) {
+    drawXY(w / 2 + (w / 2) * dsc(3) * (1 - j), h / 2 - (h / 2) * j * dsc(4)) {
+        rotate(rot * dsc(3) * j)
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f, 1f - 2 * j)
@@ -62,7 +63,7 @@ fun Canvas.drawLRSENode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
-    drawLineRotSqExpand(scale, w, h, paint)
+    drawLineRotSqExpand(scale, w, h, i % 2, paint)
 }
 
 class LineRotSqExpandView(ctx : Context) : View(ctx) {
