@@ -212,4 +212,13 @@ class LineDropLView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineDropLView {
+            val view : LineDropLView = LineDropLView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
