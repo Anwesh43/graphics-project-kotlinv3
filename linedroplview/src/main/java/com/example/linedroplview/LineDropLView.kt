@@ -187,4 +187,27 @@ class LineDropLView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineDropLView) {
+
+        private val animator : Animator = Animator(view)
+        private val ldl : LineDropL = LineDropL(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            ldl.draw(canvas, paint)
+            animator.animate {
+                ldl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ldl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
