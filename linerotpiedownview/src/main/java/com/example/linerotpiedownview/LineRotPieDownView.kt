@@ -21,7 +21,7 @@ val parts : Int = 4
 val scGap : Float = 0.04f / parts
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
-val rot : Float = 45f
+val rot : Float = 15f
 val sizeFactor : Float = 4.9f
 val strokeFactor : Float = 90f
 
@@ -206,7 +206,7 @@ class LineRotPieDownView(ctx : Context) : View(ctx) {
             canvas.drawColor(backColor)
             lrpd.draw(canvas, paint)
             animator.animate {
-                lrpd.startUpdating {
+                lrpd.update {
                     animator.stop()
                 }
             }
