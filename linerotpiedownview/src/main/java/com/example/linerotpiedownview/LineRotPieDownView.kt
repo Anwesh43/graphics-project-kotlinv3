@@ -218,4 +218,13 @@ class LineRotPieDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineRotPieDownView {
+            val view : LineRotPieDownView = LineRotPieDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
