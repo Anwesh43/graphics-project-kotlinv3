@@ -22,7 +22,7 @@ val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
 val delay : Long = 20
-val rot : Float = -135f
+val rot : Float = -120f
 val backColor : Int = Color.parseColor("#BDBDBD")
 
 fun Int.inverse() : Float = 1f / this
@@ -45,9 +45,11 @@ fun Canvas.drawLineBaseRotUp(scale : Float, w : Float, h : Float, paint : Paint)
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f)
-                drawXY(w * 0.5f * (1 - dsc(j)), 0f) {
-                    rotate(rot * dsc(2))
-                    drawLine(0f, 0f, size, 0f, paint)
+                for (k in 0..1) {
+                    drawXY(size + (w * 0.5f) * (1 - dsc(j)), 0f) {
+                        rotate(rot * dsc(2) * k)
+                        drawLine(-size, 0f, 0f, 0f, paint)
+                    }
                 }
             }
         }
