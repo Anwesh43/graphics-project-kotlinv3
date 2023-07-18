@@ -214,4 +214,13 @@ class LineBaseRotUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineBaseRotUpView {
+            val view : LineBaseRotUpView = LineBaseRotUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
