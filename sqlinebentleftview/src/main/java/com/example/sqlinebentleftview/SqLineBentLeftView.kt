@@ -50,7 +50,7 @@ fun Canvas.drawSqLineBentLeft(scale : Float, w : Float, h : Float, paint : Paint
             drawLine(0f, 0f, 0f, -size, paint)
         }
         drawXY((-w / 2 - size /2) * (1 - dsc(0)), 0f) {
-            drawRect(RectF(-size / 2, -size / 2, size / 2, size / 2), paint)
+            drawRect(RectF(-size / 2, 0f, size / 2, size), paint)
         }
     }
 }
