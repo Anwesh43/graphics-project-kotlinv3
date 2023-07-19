@@ -216,4 +216,12 @@ class SqLineBentLeftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : SqLineBentLeftView {
+            val view : SqLineBentLeftView = SqLineBentLeftView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
