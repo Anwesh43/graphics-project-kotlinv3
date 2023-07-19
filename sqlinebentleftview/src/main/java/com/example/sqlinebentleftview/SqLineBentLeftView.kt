@@ -191,4 +191,27 @@ class SqLineBentLeftView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SqLineBentLeftView) {
+
+        private var slbl : SqLineBentLeft = SqLineBentLeft(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            slbl.draw(canvas, paint)
+            animator.animate {
+                slbl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            slbl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
