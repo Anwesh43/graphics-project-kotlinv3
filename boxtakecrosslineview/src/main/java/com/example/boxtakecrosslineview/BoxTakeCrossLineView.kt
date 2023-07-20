@@ -216,4 +216,13 @@ class BoxTakeCrossLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BoxTakeCrossLineView {
+            val view : BoxTakeCrossLineView = BoxTakeCrossLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
