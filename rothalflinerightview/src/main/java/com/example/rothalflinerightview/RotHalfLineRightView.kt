@@ -219,4 +219,12 @@ class RotHalfLineRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : RotHalfLineRightView {
+            val view : RotHalfLineRightView = RotHalfLineRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
