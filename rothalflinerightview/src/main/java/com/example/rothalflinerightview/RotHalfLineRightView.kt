@@ -46,7 +46,7 @@ fun Canvas.drawRotHalfLineRight(scale : Float, w : Float, h : Float, paint : Pai
         drawXY(-w / 2 + (w / 2) * dsc(0), 0f) {
             drawLine(0f, 0f, -size, 0f, paint)
         }
-        drawXY(0f, 0f) {
+        drawXY(0f, -paint.strokeWidth / 2) {
             rotate(rot * dsc(2))
             drawArc(
                 RectF(0f, -size / 4, size / 2, size / 4),
