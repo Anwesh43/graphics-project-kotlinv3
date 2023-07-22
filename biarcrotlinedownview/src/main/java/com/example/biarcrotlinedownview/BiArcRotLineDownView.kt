@@ -215,4 +215,13 @@ class BiArcRotLineDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BiArcRotLineDownView {
+            val view : BiArcRotLineDownView = BiArcRotLineDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
