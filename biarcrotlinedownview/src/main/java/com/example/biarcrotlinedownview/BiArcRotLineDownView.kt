@@ -48,7 +48,7 @@ fun Canvas.drawBiArcRotLineDown(scale : Float, w : Float, h : Float, paint : Pai
             drawArc(RectF(-size / 2, 0f, size / 2, size), 90f, 180f * dsc(0), true, paint)
         }
         for (j in 0..1) {
-            drawXY(size * j, -h / 2 + (h / 2) * dsc(2 * j + 1)) {
+            drawXY(size * j + (1 - 2 * j) * (paint.strokeWidth / 2), -h / 2 + (h / 2) * dsc(2 * j + 1)) {
                 drawLine(0f, 0f, 0f, -size, paint)
             }
         }
