@@ -190,4 +190,27 @@ class BiArcRotLineDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiArcRotLineDownView) {
+
+        private val barld : BiArcRotLineDown = BiArcRotLineDown(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            barld.draw(canvas, paint)
+            animator.animate {
+                barld.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            barld.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
