@@ -140,7 +140,7 @@ class LineBentArcLeftView(ctx : Context) : View(ctx) {
 
         fun addNeighbor() {
             if (i < colors.size - 1) {
-                next = LBALNode(0)
+                next = LBALNode(i + 1)
                 next?.prev = this
             }
         }
