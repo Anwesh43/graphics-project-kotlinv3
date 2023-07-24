@@ -51,7 +51,7 @@ fun Canvas.drawLineBarRotShoot(scale : Float, w : Float, h : Float, paint : Pain
                         rotate(rot * dsc(2))
                         drawLine(0f, 0f, -size * dsc(0), 0f, paint)
                     }
-                    drawRect(RectF(0f, size * (1 - dsc(1)), size, size), paint)
+                    drawRect(RectF(0f, 0f, size, size * dsc(1)), paint)
                 }
             }
         }
