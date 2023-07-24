@@ -194,4 +194,27 @@ class LineBarRotShootView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineBarRotShootView) {
+
+        private val animator : Animator = Animator(view)
+        private val lbrs : LineBarRotShoot = LineBarRotShoot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lbrs.draw(canvas, paint)
+            animator.animate {
+                lbrs.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lbrs.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
