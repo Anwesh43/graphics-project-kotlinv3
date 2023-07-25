@@ -190,4 +190,27 @@ class LineSqTakeRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineSqTakeRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val lstr : LineSqTakeRight = LineSqTakeRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lstr.draw(canvas, paint)
+            animator.animate {
+                lstr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lstr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
