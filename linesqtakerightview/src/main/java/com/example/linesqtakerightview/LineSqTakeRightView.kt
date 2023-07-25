@@ -215,4 +215,13 @@ class LineSqTakeRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineSqTakeRightView {
+            val view : LineSqTakeRightView = LineSqTakeRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
