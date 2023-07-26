@@ -216,4 +216,13 @@ class LineMidBlockView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : LineMidBlockView {
+            val view : LineMidBlockView = LineMidBlockView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
