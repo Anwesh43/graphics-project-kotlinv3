@@ -191,4 +191,27 @@ class LineMidBlockView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineMidBlockView) {
+
+        private val animator : Animator = Animator(view)
+        private val lmb : LineMidBlock = LineMidBlock(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lmb.draw(canvas, paint)
+            animator.animate {
+                lmb.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lmb.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
