@@ -19,7 +19,7 @@ val colors : Array<Int> = arrayOf(
     Color.parseColor(it)
 }.toTypedArray()
 val parts : Int = 4
-val scGap : Float = 0.04f
+val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val rot : Float = 45f
 val backColor : Int = Color.parseColor("#BDBDBD")
@@ -42,7 +42,7 @@ fun Canvas.drawLineSlantRightSq(scale : Float, w : Float, h : Float, paint : Pai
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
         for (j in 0..1) {
             drawXY(-w / 2 + (w / 2) * dsc(j * 2), 0f) {
                 rotate(rot * dsc(1) * (1 - j))
