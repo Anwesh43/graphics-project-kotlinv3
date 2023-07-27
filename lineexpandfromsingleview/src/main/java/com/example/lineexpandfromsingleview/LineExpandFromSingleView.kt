@@ -212,4 +212,12 @@ class LineExpandFromSingleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : LineExpandFromSingleView {
+            val view : LineExpandFromSingleView = LineExpandFromSingleView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
