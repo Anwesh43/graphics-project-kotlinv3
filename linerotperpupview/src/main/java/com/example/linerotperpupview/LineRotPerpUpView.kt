@@ -186,4 +186,27 @@ class LineRotPerpUpView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineRotPerpUpView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val lrpu : LineRotPerpUp = LineRotPerpUp(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lrpu.draw(canvas, paint)
+            animator.animate {
+                lrpu.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lrpu.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
