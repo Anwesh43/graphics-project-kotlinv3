@@ -46,7 +46,7 @@ fun Canvas.drawSqSlantLineRight(scale : Float, w : Float, h : Float, paint : Pai
         drawRect(RectF(-size, -size * dsc(1), size, 0f), paint)
         for (j in 0..1) {
             drawXY(-size + size * j, 0f) {
-                rotate(rot * dsc(0))
+                rotate(rot * dsc(2))
                 drawLine(0f, 0f, size * dsc(0), 0f, paint)
             }
         }
