@@ -188,4 +188,27 @@ class SqSlantLineRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SqSlantLineRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val sslr : SqSlantLineRight = SqSlantLineRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            sslr.draw(canvas, paint)
+            animator.animate {
+                sslr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            sslr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
