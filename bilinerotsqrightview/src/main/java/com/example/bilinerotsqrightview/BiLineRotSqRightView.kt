@@ -46,7 +46,7 @@ fun Canvas.drawBiLineRotSqRight(scale : Float, w : Float, h : Float, paint : Pai
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f - 2 * j)
-                rotate(-rot * dsc(2))
+                rotate(-rot * dsc(2) * j)
                 drawLine(0f, 0f, -size * dsc(0), 0f, paint)
                 drawRect(RectF(-size, 0f, 0f, size * dsc(1)), paint)
             }
