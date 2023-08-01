@@ -24,7 +24,7 @@ val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
-val rot : Float = 90f
+val rot : Float = 180f
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -44,7 +44,7 @@ fun Canvas.drawLineHalfArcRot(scale : Float, w : Float, h : Float, paint : Paint
     val size : Float = Math.min(w, h) / sizeFactor
     drawXY(w / 2, h / 2 - (h / 2) * dsc(3)) {
         rotate(rot * dsc(2))
-        drawLine(-size + size * dsc(1), 0f, -size + size * dsc(0), 0f, paint)
+        drawLine(-size + 2 * size * dsc(1), 0f, -size + 2 * size * dsc(0), 0f, paint)
         drawArc(RectF(-size, -size, size, size), 0f, 180f * dsc(1), false, paint)
     }
 }
