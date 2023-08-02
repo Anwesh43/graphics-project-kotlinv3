@@ -188,4 +188,27 @@ class LineArcCreateRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineArcCreateRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val lacr : LineArcCreateRot = LineArcCreateRot(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lacr.draw(canvas, paint)
+            animator.animate {
+                lacr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lacr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
