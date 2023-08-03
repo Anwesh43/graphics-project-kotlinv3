@@ -186,4 +186,27 @@ class SqFlagRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SqFlagRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val sfr : SqFlagRot = SqFlagRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            sfr.draw(canvas, paint)
+            animator.animate {
+                sfr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            sfr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
