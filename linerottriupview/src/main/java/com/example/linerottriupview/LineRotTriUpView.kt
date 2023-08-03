@@ -212,4 +212,13 @@ class LineRotTriUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineRotTriUpView {
+            val view : LineRotTriUpView = LineRotTriUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
