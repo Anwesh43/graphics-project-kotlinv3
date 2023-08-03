@@ -211,4 +211,13 @@ class SqFlagRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : SqFlagRotView {
+            val view : SqFlagRotView = SqFlagRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
