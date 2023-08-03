@@ -42,11 +42,11 @@ fun Canvas.drawLineRotTriUp(scale : Float, w : Float, h : Float, paint : Paint) 
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2, h / 2 - (h / 2) * dsc(3)) {
         rotate(rot * dsc(1))
         for (j in 0..1) {
             drawXY(0f, 0f) {
-                drawLine(-size * dsc(2), 0f, 0f, -size * dsc(1), paint)
+                drawLine(-size * dsc(2), 0f, 0f, -size * dsc(0) * (1f - 2 * j), paint)
             }
         }
     }
