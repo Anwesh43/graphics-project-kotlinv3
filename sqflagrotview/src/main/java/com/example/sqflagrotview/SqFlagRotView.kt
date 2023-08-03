@@ -58,6 +58,7 @@ fun Canvas.drawSFRNode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
+    drawSqFlagRot(scale, w, h, paint)
 }
 
 class SqFlagRotView(ctx : Context) : View(ctx) {
