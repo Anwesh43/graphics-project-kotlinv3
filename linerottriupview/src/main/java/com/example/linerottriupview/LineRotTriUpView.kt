@@ -187,4 +187,27 @@ class LineRotTriUpView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineRotTriUpView) {
+
+        private val animator : Animator = Animator(view)
+        private val lrtu : LineRotTriUp = LineRotTriUp(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lrtu.draw(canvas, paint)
+            animator.animate {
+                lrtu.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lrtu.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
