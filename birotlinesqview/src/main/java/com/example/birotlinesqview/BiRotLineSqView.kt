@@ -217,4 +217,13 @@ class BiRotLineSqView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(actvity : Activity) : BiRotLineSqView {
+            val view : BiRotLineSqView = BiRotLineSqView(actvity)
+            actvity.setContentView(view)
+            return view
+        }
+    }
 }
