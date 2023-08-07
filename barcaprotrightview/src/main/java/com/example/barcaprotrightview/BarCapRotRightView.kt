@@ -42,12 +42,14 @@ fun Canvas.drawBarCapRotRight(scale : Float, w : Float, h : Float, paint : Paint
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
-        rotate(rot * dsc(0))
+    drawXY(w / 2 + (w / 2 + size) * dsc(3) , h / 2) {
         drawXY(-w / 2 + (w / 2) * dsc(0), 0f) {
             drawLine(0f, 0f, -size, 0f, paint)
         }
-        drawRect(RectF(0f, 0f, size * dsc(1), size / 2), paint)
+        drawXY(0f, 0f) {
+            rotate(-rot * dsc(2))
+            drawRect(RectF(0f, 0f, size * dsc(1), size / 2), paint)
+        }
     }
 }
 
