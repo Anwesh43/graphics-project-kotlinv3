@@ -211,4 +211,13 @@ class BarCapRotRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BarCapRotRightView {
+            val view : BarCapRotRightView = BarCapRotRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
