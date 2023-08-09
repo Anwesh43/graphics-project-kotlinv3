@@ -188,4 +188,27 @@ class LineSqHoldRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineSqHoldRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val lshr : LineSqHoldRot = LineSqHoldRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lshr.draw(canvas, paint)
+            animator.animate {
+                lshr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lshr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
