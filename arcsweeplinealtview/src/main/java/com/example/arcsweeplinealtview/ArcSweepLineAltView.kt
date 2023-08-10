@@ -213,4 +213,13 @@ class ArcSweepLineAltView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : ArcSweepLineAltView {
+            val view : ArcSweepLineAltView = ArcSweepLineAltView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
