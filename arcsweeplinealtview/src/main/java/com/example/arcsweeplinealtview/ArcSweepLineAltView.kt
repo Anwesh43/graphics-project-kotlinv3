@@ -16,7 +16,7 @@ val colors : Array<Int> = arrayOf(
     "#C51162",
     "#00C853"
 ).map {
-    Color.parseColor("#BDBDBD")
+    Color.parseColor(it)
 }.toTypedArray()
 val parts : Int = 4
 val scGap : Float = 0.04f / parts
@@ -42,12 +42,15 @@ fun Canvas.drawArcSweepLineAlt(scale : Float, w : Float, h : Float, paint : Pain
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
         drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), 0f, 360f * dsc(0), true, paint)
+
         for (j in 0..1) {
-            drawXY(0f, -h / 2 + (h / 2 - size / 2) * dsc(1)) {
+            drawXY(0f, 0f) {
                 rotate(rot * (1f - 2 * j) * dsc(2))
-                drawLine(0f, 0f, 0f, -size / 2, paint)
+                drawXY(0f, -h / 2 + (h / 2 - size / 2) * dsc(1)) {
+                    drawLine(0f, 0f, 0f, -size / 2, paint)
+                }
             }
         }
     }
