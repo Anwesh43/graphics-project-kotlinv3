@@ -188,4 +188,27 @@ class LineRotAltUpView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineRotAltUpView) {
+
+        private val lrau : LineRotAltUp = LineRotAltUp(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lrau.draw(canvas, paint)
+            animator.animate {
+                lrau.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lrau.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
