@@ -213,4 +213,12 @@ class LineRotAltUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : LineRotAltUpView {
+            val view : LineRotAltUpView = LineRotAltUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
