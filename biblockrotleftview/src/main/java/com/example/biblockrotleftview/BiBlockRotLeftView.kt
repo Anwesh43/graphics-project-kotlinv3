@@ -44,11 +44,11 @@ fun Canvas.drawBiBlockRotLeft(scale : Float, w : Float, h : Float, paint : Paint
     }
     drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
         drawXY(-w / 2 + (w / 2) * dsc(0), 0f) {
-            drawRect(-size, -size / 2, 0f, size / 2, paint)
+            drawRect(-size, -size, 0f, 0f, paint)
         }
         drawXY(w * 0.5f * (1 - dsc(1)), 0f) {
             rotate(rot * dsc(2))
-            drawRect(RectF(0f, -size / 2, size, size / 2), paint)
+            drawRect(RectF(0f, -size, size, 0f), paint)
         }
     }
 }
