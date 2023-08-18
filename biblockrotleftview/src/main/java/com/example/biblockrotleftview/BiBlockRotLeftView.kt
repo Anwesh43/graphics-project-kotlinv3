@@ -213,4 +213,12 @@ class BiBlockRotLeftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : BiBlockRotLeftView {
+            val view : BiBlockRotLeftView = BiBlockRotLeftView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
