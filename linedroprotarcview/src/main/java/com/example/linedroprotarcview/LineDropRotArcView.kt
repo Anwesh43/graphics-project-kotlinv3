@@ -187,4 +187,27 @@ class LineDropRotArcView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineDropRotArcView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val ldra : LineDropRotArc = LineDropRotArc(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            ldra.draw(canvas, paint)
+            animator.animate {
+                ldra.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ldra.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
