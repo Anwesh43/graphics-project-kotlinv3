@@ -210,4 +210,13 @@ class LineDropRotArcView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineDropRotArcView {
+            val view : LineDropRotArcView = LineDropRotArcView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
