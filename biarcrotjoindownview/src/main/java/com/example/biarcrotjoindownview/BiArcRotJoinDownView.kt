@@ -20,7 +20,7 @@ val colors : Array<Int> = arrayOf(
 }.toTypedArray()
 val parts : Int = 4
 val scGap : Float = 0.04f / parts
-val sizeFactor : Float = 90f
+val sizeFactor : Float = 4.9f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val rot : Float = 90f
@@ -47,7 +47,7 @@ fun Canvas.drawBiArcJoinDown(scale : Float, w : Float, h : Float, paint : Paint)
                 scale(1f - 2 * j, 1f)
                 drawXY((w / 2 - size) * (1 - dsc(1)), 0f) {
                     rotate(rot * dsc(2))
-                    drawArc(RectF(0f, -size / 2, size, size / 2), 0f, 180f * dsc(0), true, paint)
+                    drawArc(RectF(0f, -size / 2, size, size / 2), 180f, 180f * dsc(0), true, paint)
                 }
             }
         }
