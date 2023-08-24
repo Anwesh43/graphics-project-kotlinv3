@@ -43,7 +43,7 @@ fun Canvas.drawHalfArcLeftRot(scale : Float, w : Float, h : Float, paint : Paint
         scale.divideScale(it, parts)
     }
     drawXY(w / 2 -(w / 2) * dsc(3), h / 2) {
-        rotate(rot * dsc(2))
+        rotate(-rot * dsc(2))
         drawXY(w * 0.5f * (1f - dsc(1)), 0f) {
             drawArc(RectF(-size / 2, -size, size / 2, 0f), 90f, 180f * dsc(0), false, paint)
         }
@@ -57,6 +57,7 @@ fun Canvas.drawHALRNode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
+    paint.style = Paint.Style.STROKE
     drawHalfArcLeftRot(scale, w, h, paint)
 }
 
