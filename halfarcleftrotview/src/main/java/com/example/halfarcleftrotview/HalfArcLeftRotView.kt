@@ -185,4 +185,27 @@ class HalfArcLeftRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : HalfArcLeftRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val halr : HalfArcLeftRot = HalfArcLeftRot(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            halr.draw(canvas, paint)
+            animator.animate {
+                halr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            halr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
