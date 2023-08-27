@@ -187,4 +187,27 @@ class LineCreateExpandLeftView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineCreateExpandLeftView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val lcel : LineCreateExpandLeft = LineCreateExpandLeft(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lcel.draw(canvas, paint)
+            animator.animate {
+                lcel.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lcel.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
