@@ -212,4 +212,13 @@ class LineCreateExpandLeftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineCreateExpandLeftView {
+            val view : LineCreateExpandLeftView = LineCreateExpandLeftView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
