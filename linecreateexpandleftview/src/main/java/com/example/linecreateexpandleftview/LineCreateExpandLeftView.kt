@@ -44,8 +44,8 @@ fun Canvas.drawLineCreateExpandLeft(scale : Float, w : Float, h : Float, paint :
     }
     drawXY(w / 2 - (w / 2 + size) * dsc(3), h / 2) {
         for (j in 0..1) {
-            drawXY((w / 2) * (1 - dsc(1)), 0f) {
-                rotate(rot * (1 - dsc(2)) * (1f - 2 * j))
+            drawXY(-(w / 2) * (1 - dsc(1)), 0f) {
+                rotate(rot * dsc(2) * (1f - 2 * j))
                 drawLine(0f, 0f, size * dsc(0), 0f, paint)
             }
         }
