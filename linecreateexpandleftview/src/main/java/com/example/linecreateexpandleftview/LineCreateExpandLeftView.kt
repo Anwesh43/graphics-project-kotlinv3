@@ -61,3 +61,18 @@ fun Canvas.drawLCELNode(i : Int, scale : Float, paint : Paint) {
     drawLineCreateExpandLeft(scale, w, h, paint)
 }
 
+class LineCreateExpandLeftView(ctx : Context) : View(ctx) {
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
+}
