@@ -187,4 +187,27 @@ class LineBreakAltView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineBreakAltView) {
+
+        private val animator : Animator = Animator(view)
+        private val lba : LineBreakAlt = LineBreakAlt(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lba.draw(canvas, paint)
+            animator.animate {
+                lba.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lba.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
