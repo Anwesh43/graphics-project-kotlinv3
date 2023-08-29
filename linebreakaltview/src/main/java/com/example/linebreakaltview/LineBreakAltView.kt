@@ -212,4 +212,13 @@ class LineBreakAltView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineBreakAltView {
+            val view : LineBreakAltView = LineBreakAltView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
