@@ -222,4 +222,13 @@ class HalfArcLineJoinView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : HalfArcLineJoinView {
+            val view : HalfArcLineJoinView = HalfArcLineJoinView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
