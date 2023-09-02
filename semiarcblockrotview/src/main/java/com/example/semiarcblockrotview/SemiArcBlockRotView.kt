@@ -186,4 +186,27 @@ class SemiArcBlockRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SemiArcBlockRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val sabr : SemiArcBlockRot = SemiArcBlockRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            sabr.draw(canvas, paint)
+            animator.animate {
+                sabr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            sabr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
