@@ -211,4 +211,13 @@ class LineSlantHorizView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineSlantHorizView {
+            val view : LineSlantHorizView = LineSlantHorizView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
