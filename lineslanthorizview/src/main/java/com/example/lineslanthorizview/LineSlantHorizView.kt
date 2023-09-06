@@ -16,7 +16,7 @@ val colors : Array<Int> = arrayOf(
     "#C51162",
     "#00C853"
 ).map {
-    Color.parseColor("#BDBDBD")
+    Color.parseColor(it)
 }.toTypedArray()
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
@@ -42,10 +42,12 @@ fun Canvas.drawLineSlantHoriz(scale : Float, w : Float, h : Float, paint : Paint
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2 - (w / 2 + size) * dsc(3), h / 2) {
         for (j in 0..1) {
-            rotate(rot * (1 - dsc(1)) * j)
-            drawLine(0f, 0f, size * dsc(0), 0f , paint)
+            drawXY(0f, paint.strokeWidth / 2) {
+                rotate(rot * (1 - dsc(1)) * j)
+                drawLine(0f, 0f, size * dsc(0), 0f, paint)
+            }
         }
         drawRect(RectF(-size * dsc(2), 0f, 0f, size), paint)
     }
