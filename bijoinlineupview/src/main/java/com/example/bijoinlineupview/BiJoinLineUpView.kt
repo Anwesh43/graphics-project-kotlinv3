@@ -189,4 +189,27 @@ class BiJoinLineUpView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiJoinLineUpView) {
+
+        private val animator : Animator = Animator(view)
+        private val bjlu : BiJoinLineUp = BiJoinLineUp(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bjlu.draw(canvas, paint)
+            animator.animate {
+                bjlu.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bjlu.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
