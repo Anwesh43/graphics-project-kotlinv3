@@ -214,4 +214,12 @@ class BiJoinLineUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : BiJoinLineUpView {
+            val view : BiJoinLineUpView = BiJoinLineUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
