@@ -188,4 +188,27 @@ class TLineBlockView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : TLineBlockView) {
+
+        private val animator : Animator = Animator(view)
+        private val tlb : TLineBlock = TLineBlock(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            tlb.draw(canvas, paint)
+            animator.animate {
+                tlb.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            tlb.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
