@@ -213,4 +213,13 @@ class TLineBlockView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : TLineBlockView {
+            val view : TLineBlockView = TLineBlockView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
