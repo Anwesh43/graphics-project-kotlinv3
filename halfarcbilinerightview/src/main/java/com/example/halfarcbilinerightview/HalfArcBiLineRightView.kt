@@ -214,4 +214,13 @@ class HalfArcBiLineRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : HalfArcBiLineRightView {
+            val view : HalfArcBiLineRightView = HalfArcBiLineRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
