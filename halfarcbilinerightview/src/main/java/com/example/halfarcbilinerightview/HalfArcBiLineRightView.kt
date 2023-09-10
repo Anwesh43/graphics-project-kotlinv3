@@ -22,7 +22,7 @@ val parts : Int = 5
 val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
-val rot : Float = -90f
+val rot : Float = 90f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 
@@ -45,7 +45,7 @@ fun Canvas.drawHalfArcBiLineRight(scale : Float, w : Float, h : Float, paint : P
     drawXY(w / 2 + (w / 2 + size) * dsc(4), h / 2) {
         //rotate(rot * dsc(2))
         for (j in 0..1) {
-            drawXY(-size / 2 + size * j, h * 0.5f * (1 - dsc(2 * j))) {
+            drawXY(-size / 2 + paint.strokeWidth / 2 + (size - paint.strokeWidth) * j, h * 0.5f * (1 - dsc(2 * j))) {
                 rotate(-rot * dsc(3) * j)
                 drawLine(0f, 0f, 0f, size, paint)
             }
