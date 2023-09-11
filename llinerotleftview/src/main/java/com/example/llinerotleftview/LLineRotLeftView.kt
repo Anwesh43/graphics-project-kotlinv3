@@ -62,14 +62,16 @@ fun Canvas.drawLLRLNode(i : Int, scale : Float, paint : Paint) {
 
 class LLineRotLeftView(ctx : Context) : View(ctx) {
 
-    override fun onDraw(canvas : Canvas) {
+    private val rendere : Renderer = Renderer(this)
 
+    override fun onDraw(canvas : Canvas) {
+        rendere.render(canvas)
     }
 
     override fun onTouchEvent(event : MotionEvent) : Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-
+                rendere.handleTap()
             }
         }
         return true
