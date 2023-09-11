@@ -6,7 +6,6 @@ import android.app.Activity
 import android.content.Context
 import android.graphics.Paint
 import android.graphics.Canvas
-import android.graphics.RectF
 import android.graphics.Color
 
 val colors : Array<Int> = arrayOf(
@@ -45,7 +44,7 @@ fun Canvas.drawLLineRotLeft(scale : Float, w : Float, h : Float, paint : Paint) 
     drawXY(w / 2 - (w / 2) * dsc(3), h / 2) {
         rotate(rot * dsc(2))
         drawLine(0f, 0f, 0f, size * dsc(0), paint)
-        drawXY(w * 0.5f * (1 - dsc(0)), size) {
+        drawXY(w * 0.5f * (1 - dsc(1)), size) {
             drawLine(0f, 0f, size, 0f, paint)
         }
     }
