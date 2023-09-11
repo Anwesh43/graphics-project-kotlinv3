@@ -186,4 +186,27 @@ class LLineRotLeftView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LLineRotLeftView) {
+
+        private val animator : Animator = Animator(view)
+        private val llrl : LLineRotLeft = LLineRotLeft(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            llrl.draw(canvas, paint)
+            animator.animate {
+                llrl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            llrl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
