@@ -187,4 +187,27 @@ class LineStepRotDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineStepRotDownView) {
+
+        private val lsrd : LineStepRotDown = LineStepRotDown(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lsrd.draw(canvas, paint)
+            animator.animate {
+                lsrd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lsrd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
