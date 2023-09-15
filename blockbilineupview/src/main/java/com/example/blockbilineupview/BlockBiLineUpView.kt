@@ -212,4 +212,13 @@ class BlockBiLineUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : BlockBiLineUpView {
+            val view : BlockBiLineUpView = BlockBiLineUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
