@@ -187,4 +187,27 @@ class BlockBiLineUpView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BlockBiLineUpView) {
+
+        private val animator : Animator = Animator(view)
+        private val bblu : BlockBiLineUp = BlockBiLineUp(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bblu.draw(canvas, paint)
+            animator.animate {
+                bblu.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bblu.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
