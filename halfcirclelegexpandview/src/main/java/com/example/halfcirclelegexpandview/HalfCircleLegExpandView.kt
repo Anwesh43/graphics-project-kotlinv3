@@ -213,4 +213,12 @@ class HalfCircleLegExpandView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : HalfCircleLegExpandView {
+            val view : HalfCircleLegExpandView = HalfCircleLegExpandView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
