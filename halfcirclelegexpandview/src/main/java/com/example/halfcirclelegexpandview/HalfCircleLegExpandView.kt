@@ -45,7 +45,7 @@ fun Canvas.drawHalfCircleLegExpand(scale : Float, w : Float, h : Float, paint : 
     drawXY(w / 2, h / 2 - (h / 2 + size) * dsc(3)) {
         drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), 180f, 180f * dsc(0), true, paint)
         for (j in 0..1) {
-            drawXY(-size / 2 + size * j, 0f) {
+            drawXY(-size / 2 + paint.strokeWidth / 2 + (size + paint.strokeWidth) * j, 0f) {
                 rotate(rot * (1f - 2 * j) * dsc(2))
                 drawLine(0f, 0f, 0f, size * dsc(1), paint)
             }
