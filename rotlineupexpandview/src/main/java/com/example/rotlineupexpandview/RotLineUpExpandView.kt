@@ -211,4 +211,12 @@ class RotLineUpExpandView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : RotLineUpExpandView {
+            val view : RotLineUpExpandView = RotLineUpExpandView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
