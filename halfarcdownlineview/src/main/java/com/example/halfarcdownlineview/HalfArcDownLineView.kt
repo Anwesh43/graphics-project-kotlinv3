@@ -188,4 +188,27 @@ class HalfArcDownLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : HalfArcDownLineView) {
+
+        private val animator : Animator = Animator(view)
+        private val hadl : HalfArcDownLine = HalfArcDownLine(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            hadl.draw(canvas, paint)
+            animator.animate {
+                hadl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            hadl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
