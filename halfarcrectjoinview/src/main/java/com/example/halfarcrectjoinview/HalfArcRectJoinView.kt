@@ -180,8 +180,31 @@ class HalfArcRectJoinView(ctx : Context) : View(ctx) {
             }
         }
 
-        fun startUpdaitng(cb : () -> Unit) {
+        fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : HalfArcRectJoinView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val harj : HalfArcRectJoin = HalfArcRectJoin(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            harj.draw(canvas, paint)
+            animator.animate {
+                harj.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            harj.startUpdating {
+                animator.start()
+            }
         }
     }
 }
