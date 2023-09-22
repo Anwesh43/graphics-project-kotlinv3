@@ -120,4 +120,45 @@ class HalfArcRectJoinView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class HARNode(var i : Int = 0, val state : State = State()) {
+
+        private var next : HARNode? = null
+        private var prev : HARNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = HARNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawHARJNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float)  -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : HARNode {
+            var curr : HARNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
