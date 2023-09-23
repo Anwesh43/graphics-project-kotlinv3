@@ -100,7 +100,7 @@ class BiArcRotDownView(ctx : Context) : View(ctx) {
         }
     }
 
-    data class Animaor(var view : View, var animated : Boolean = false) {
+    data class Animator(var view : View, var animated : Boolean = false) {
 
         fun animate(cb : () -> Unit) {
             if (animated) {
@@ -189,6 +189,29 @@ class BiArcRotDownView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : BiArcRotDownView) {
+
+        private val barc : BiArcRotDown = BiArcRotDown(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            barc.draw(canvas, paint)
+            animator.animate {
+                barc.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            barc.startUpdating {
+                animator.start()
+            }
         }
     }
 }
