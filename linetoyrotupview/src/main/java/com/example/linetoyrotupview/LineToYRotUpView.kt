@@ -213,4 +213,13 @@ class LineToYRotUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineToYRotUpView {
+            val view : LineToYRotUpView = LineToYRotUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
