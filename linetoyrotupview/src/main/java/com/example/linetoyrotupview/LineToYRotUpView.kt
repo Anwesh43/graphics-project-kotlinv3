@@ -188,4 +188,27 @@ class LineToYRotUpView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineToYRotUpView) {
+
+        private val ltyru : LineToYRotUp = LineToYRotUp(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            ltyru.draw(canvas, paint)
+            animator.animate {
+                ltyru.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ltyru.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
