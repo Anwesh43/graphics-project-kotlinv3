@@ -47,7 +47,7 @@ fun Canvas.drawLineToYRotUp(scale : Float, w : Float, h : Float, paint : Paint) 
         for (j in 0..2) {
             drawXY(0f, 0f) {
                 rotate(rot * (j - 1) * dsc(1))
-                drawLine(0f, 0f, size * dsc(0), 0f, paint)
+                drawLine(0f, 0f, 0f,size * dsc(0), paint)
             }
         }
     }
