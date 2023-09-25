@@ -53,6 +53,7 @@ fun Canvas.drawSmallArcAboveLine(scale : Float, w : Float, h : Float, paint : Pa
 fun Canvas.drawSAALNode(i : Int, scale : Float, paint : Paint) {
     val w : Float = width.toFloat()
     val h : Float = height.toFloat()
+    paint.style = Paint.Style.STROKE
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
