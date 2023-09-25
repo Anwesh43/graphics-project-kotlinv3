@@ -210,4 +210,12 @@ class SmallArcAboveLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : SmallArcAboveLineView {
+            val view : SmallArcAboveLineView = SmallArcAboveLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
