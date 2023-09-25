@@ -45,7 +45,7 @@ fun Canvas.drawSmallArcAboveLine(scale : Float, w : Float, h : Float, paint : Pa
     }
     drawXY(w / 2, h / 2 + (h / 2) * dsc(3)) {
         rotate(-deg * dsc(2))
-        drawLine(-size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), 0f, paint)
+        drawLine(0f, -size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), paint)
         drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), start, start * dsc(1), false, paint)
     }
 }
