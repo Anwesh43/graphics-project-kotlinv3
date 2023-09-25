@@ -185,4 +185,27 @@ class SmallArcAboveLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SmallArcAboveLineView) {
+
+        private val saal : SmallArcAboveLine = SmallArcAboveLine(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            saal.draw(canvas, paint)
+            animator.animate {
+                saal.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            saal.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
