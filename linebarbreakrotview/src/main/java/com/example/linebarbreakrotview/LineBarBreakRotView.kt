@@ -43,9 +43,12 @@ fun Canvas.drawLineBarBreakRot(scale : Float, w : Float, h : Float, paint : Pain
         scale.divideScale(it, parts)
     }
     drawXY(w / 2 + (w / 2 + size) * dsc(3), h/ 2) {
-        rotate(rot * dsc(2))
+
         drawLine(0f, 0f, -size * dsc(0), 0f, paint)
-        drawRect(RectF(0f, 0f, size / 4, size * dsc(1)), paint)
+        drawXY(0f, 0f) {
+            rotate(rot * dsc(2))
+            drawRect(RectF(0f, 0f, size / 4, size * dsc(1)), paint)
+        }
     }
 }
 
