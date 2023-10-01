@@ -184,4 +184,27 @@ class LineBarBreakRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineBarBreakRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val lbbr : LineBarBreakRot = LineBarBreakRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lbbr.draw(canvas, paint)
+            animator.animate {
+                lbbr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lbbr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
