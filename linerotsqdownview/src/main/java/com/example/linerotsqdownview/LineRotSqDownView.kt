@@ -61,6 +61,7 @@ fun Canvas.drawLRSDNode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
+    drawLineRotSqDown(scale, w, h, paint)
 }
 
 class LineRotSqDownView(ctx : Context) : View(ctx) {
@@ -134,7 +135,7 @@ class LineRotSqDownView(ctx : Context) : View(ctx) {
         private var prev : LRSDNode? = null
 
         init {
-
+            addNeighbor()
         }
 
         fun addNeighbor() {
