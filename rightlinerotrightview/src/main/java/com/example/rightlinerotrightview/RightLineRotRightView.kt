@@ -188,4 +188,27 @@ class RightLineRotRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : RightLineRotRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val rlrr : RightLineRotRight = RightLineRotRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            rlrr.draw(canvas, paint)
+            animator.animate {
+                rlrr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rlrr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
