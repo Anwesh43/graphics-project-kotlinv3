@@ -186,4 +186,27 @@ class BreakLineRotLeftView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BreakLineRotLeftView) {
+
+        private val blrl : BreakLineRotLeft = BreakLineRotLeft(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            blrl.draw(canvas, paint)
+            animator.animate {
+                blrl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            blrl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
