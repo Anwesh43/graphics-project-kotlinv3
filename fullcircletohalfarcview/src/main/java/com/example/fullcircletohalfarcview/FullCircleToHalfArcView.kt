@@ -211,4 +211,13 @@ class FullCircleToHalfArcView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : FullCircleToHalfArcView {
+            val view : FullCircleToHalfArcView = FullCircleToHalfArcView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
