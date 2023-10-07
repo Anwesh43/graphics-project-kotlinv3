@@ -45,7 +45,7 @@ fun Canvas.drawSqBentLineRot(scale : Float, w : Float, h : Float, paint : Paint)
     val size : Float = Math.min(w, h) / sizeFactor
     drawXY(w / 2 + (w / 2 + size) * dsc(4), h / 2) {
         drawXY(0f, 0f) {
-            rotate(rot * dsc(2))
+            rotate(-rot * dsc(2))
             drawRect(RectF(-size, 0f, 0f, size * dsc(0)), paint)
         }
         drawXY(0f, 0f) {
