@@ -190,4 +190,27 @@ class SqBentLineRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SqBentLineRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val sblr : SqBentLineRight = SqBentLineRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            sblr.draw(canvas, paint)
+            animator.animate {
+                sblr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            sblr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
