@@ -158,7 +158,7 @@ class RotShrinkSqLeftView(ctx : Context) : View(ctx) {
         }
     }
 
-    data class RotShirnkSqLeft(var i : Int) {
+    data class RotShrinkSqLeft(var i : Int) {
         private var curr : RSSLNode = RSSLNode(0)
         private var dir : Int = 1
 
@@ -178,5 +178,29 @@ class RotShrinkSqLeftView(ctx : Context) : View(ctx) {
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
         }
+    }
+
+    data class Renderer(var view : RotShrinkSqLeftView) {
+
+        private val animator : Animator = Animator(view)
+        private val rssl : RotShrinkSqLeft = RotShrinkSqLeft(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            rssl.draw(canvas, paint)
+            animator.animate {
+                rssl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rssl.startUpdating {
+                animator.start()
+            }
+        }
+
     }
 }
