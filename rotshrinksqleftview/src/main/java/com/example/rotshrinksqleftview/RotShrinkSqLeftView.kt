@@ -47,7 +47,7 @@ fun Canvas.drawRotSqLeft(scale : Float, w : Float, h : Float, paint : Paint) {
     }
 }
 
-fun Canvas.drawRSLNode(i : Int, scale : Float, paint : Paint) {
+fun Canvas.drawRSSLNode(i : Int, scale : Float, paint : Paint) {
     val w : Float = width.toFloat()
     val h : Float = height.toFloat()
     paint.color = colors[i]
@@ -114,6 +114,47 @@ class RotShrinkSqLeftView(ctx : Context) : View(ctx) {
             if (animated) {
                 animated = false
             }
+        }
+    }
+
+    data class RSSLNode(var i : Int = 0, val state : State = State()) {
+
+        private var next : RSSLNode? = null
+        private var prev : RSSLNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = RSSLNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawRSSLNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : RSSLNode {
+            var curr : RSSLNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
         }
     }
 }
