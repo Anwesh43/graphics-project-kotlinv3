@@ -203,6 +203,13 @@ class RotShrinkSqLeftView(ctx : Context) : View(ctx) {
                 animator.start()
             }
         }
+    }
 
+    companion object {
+        fun create(activity: Activity) : RotShrinkSqLeftView {
+            val view : RotShrinkSqLeftView = RotShrinkSqLeftView(activity)
+            activity.setContentView(view)
+            return view
+        }
     }
 }
