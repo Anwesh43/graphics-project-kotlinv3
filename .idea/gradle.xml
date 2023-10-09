@@ -124,6 +124,7 @@
             <option value="$PROJECT_DIR$/tbentlinedownview" />
             <option value="$PROJECT_DIR$/tlineblockview" />
             <option value="$PROJECT_DIR$/topsqdownview" />
+            <option value="$PROJECT_DIR$/uplinerotcatchsqview" />
           </set>
         </option>
       </GradleProjectSettings>
