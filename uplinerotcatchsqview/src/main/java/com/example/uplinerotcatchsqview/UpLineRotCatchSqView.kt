@@ -62,3 +62,18 @@ fun Canvas.drawULRCNode(i : Int, scale : Float, paint : Paint) {
     drawUpLineRotCatch(scale, w, h, paint)
 }
 
+class UpLineRotCatchSqView(ctx : Context) : View(ctx) {
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+       when (event.action) {
+           MotionEvent.ACTION_DOWN -> {
+
+           }
+       }
+        return true
+    }
+}
