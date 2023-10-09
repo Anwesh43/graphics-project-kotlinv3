@@ -213,4 +213,13 @@ class UpLineRotCatchSqView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : UpLineRotCatchSqView {
+            val view : UpLineRotCatchSqView = UpLineRotCatchSqView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
