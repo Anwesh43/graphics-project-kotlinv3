@@ -166,7 +166,7 @@ class UpLineRotCatchSqView(ctx : Context) : View(ctx) {
         }
     }
 
-    data class UpLineRotCatch(var i : Int) {
+    data class UpLineRotCatchSq(var i : Int) {
 
         private var curr : ULRCSNode = ULRCSNode(0)
         private var dir : Int = 1
@@ -186,6 +186,29 @@ class UpLineRotCatchSqView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : UpLineRotCatchSqView) {
+
+        private val animator : Animator = Animator(view)
+        private val ulrcs : UpLineRotCatchSq = UpLineRotCatchSq(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            ulrcs.draw(canvas, paint)
+            animator.animate {
+                ulrcs.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ulrcs.startUpdating {
+                animator.start()
+            }
         }
     }
 }
