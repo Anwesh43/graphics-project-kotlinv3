@@ -204,4 +204,13 @@ class FullToHalfCircleRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : FullToHalfCircleRightView {
+            val view : FullToHalfCircleRightView = FullToHalfCircleRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
